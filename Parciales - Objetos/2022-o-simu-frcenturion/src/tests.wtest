@@ -1,0 +1,20 @@
+import example.*
+
+describe "Pruebas de mision" {
+
+
+const personaje1 = new Arquero(copas = 0, agilidad = 20, rango = 200)
+
+const mision1 = new MisionIndividual(copasEnJuego = 5, tipo = bonus, dificultad = 10, personaje = personaje1)
+ 
+
+test "La mision individual es superada porque el personaje tiene estrategia" {
+
+	assert.that(mision1.puedeSerSuperada())
+}
+
+test "La mision individual es superada porque la destreza del personaje es mayor a la dificultad de la mision" {
+	
+	assert.that(mision1.puedeSerSuperada())
+}
+

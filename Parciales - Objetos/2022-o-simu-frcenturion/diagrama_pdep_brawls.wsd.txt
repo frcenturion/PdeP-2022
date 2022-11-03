@@ -1,0 +1,141 @@
+@startuml
+abstract class Personaje {
+
+copas
+
+destreza()
+tieneEstrategia()
+ganarCopas(numero)
+
+}
+
+class Arquero {
+
+agilidad
+rango
+
+destreza()
+tieneEstrategia()
+
+}
+
+class Guerrera {
+
+fuerza
+estrategia 
+
+destreza()
+tieneEstrategia()
+
+}
+
+class Ballestero {
+
+destreza()
+
+}
+
+
+Personaje <|-- Arquero
+Personaje <|-- Guerrera
+Arquero <|-- Ballestero
+
+
+abstract class Mision {
+
+dificultad
+tipo
+
+copasEnJuegoBase()
+puedeSerSuperada()
+puedeRealizarla()
+ganar()
+perder()
+realizarMision()
+
+}
+
+
+note left of Mision::"realizarMision()"
+Punto de entrada del punto 2
+end note
+
+note left of Mision::"puedeSerSuperada()"
+Punto de entrada del punto 1
+end note
+
+
+
+Mision -r-> Tipo
+
+class MisionIndividual {
+
+personaje
+
+
+
+cantidadParticipantes()
+copasEnJuegoBase()
+puedeSerSuperada()
+puedeRealizarla()
+ganar()
+perder()
+
+}
+
+MisionIndividual --> Personaje
+
+
+class MisionPorEquipo {
+
+participantes
+
+
+
+cantidadParticipantes()
+copasEnJuegoBase()
+puedeSerSuperada()
+puedeRealizarla()
+ganar()
+perder()
+
+}
+
+MisionPorEquipo -->"*" Personaje
+
+
+Mision <|-- MisionIndividual
+Mision <|-- MisionPorEquipo
+
+
+interface Tipo {
+
+copasEnJuegoFinales()
+
+}
+
+object bonus {
+
+copasEnJuegoFinales()
+
+}
+
+Tipo <|.. bonus
+Tipo <|.. Boost
+Tipo <|.. normal
+
+
+class Boost  {
+
+multiplicador
+
+copasEnJuegoFinales()
+
+}
+
+object normal {
+
+copasEnJuegoFinales()
+
+}
+@enduml

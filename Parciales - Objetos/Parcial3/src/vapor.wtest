@@ -1,0 +1,24 @@
+import vapor.*
+
+describe "Test de compra de juego" {
+		
+	const minecraft = new Juego(precio = 208, dificultad = 2, estilo = aventura, sangre = 1)
+		
+	test "Un juego no se puede comprar cuando el jugador no tiene suficientes fondos contando dinero y gemas" {
+		
+		cacho.jugar(tetris, 4)		//esto le va a dar dos logros que cuando los convierta a gemas van a ser 107
+		cacho.transformarLogros() 	//aca transformamos los logros en gemas, por lo que lo deja con 107 gemas
+		
+		//a esta altura cacho suma, entre dinero y gemas, 207
+		
+		//vamos a hacer que cacho compre el minecraft, pero no va a poder porque tiene 207 y el juego cuesta 208
+		
+		cacho.puedeComprar(minecraft)
+		
+		assert.notThat(cacho.puedeComprar(minecraft))
+
+	}
+
+
+
+}
